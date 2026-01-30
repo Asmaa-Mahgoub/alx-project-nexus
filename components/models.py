@@ -1,5 +1,5 @@
 from django.db import models
-from suppliers.models import Suppliers
+#from suppliers.models import Suppliers
 
 # Create your models here.
 class Component(models.Model):  #Representing component identity, not stock, not supplier, not price
@@ -20,7 +20,7 @@ class ComponentBatch(models.Model):
     expiry_date= models. DateField()
     received_date= models.DateField() #business reality
     created_at = models.DateTimeField(auto_now_add=True) #system metadata
-    supplier= models.ForeignKey(Suppliers, on_delete= models.PROTECT, related_name='component_batches')
+    supplier= models.ForeignKey('suppliers.Supplier', on_delete= models.PROTECT, related_name='component_batches')
     status= models.CharField(max_length=25, choices=BatchStatus.choices, default=BatchStatus.AVAILABLE)
 
     #Batch no. is supplier specific. A batch number must be unique PER SUPPLIER, not globally. 

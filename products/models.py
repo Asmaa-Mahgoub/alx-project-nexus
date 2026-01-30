@@ -1,5 +1,5 @@
 from django.db import models
-from components.models import Components
+#from components.models import Components
 
 # Create your models here.
 class Product(models.Model):
@@ -27,7 +27,7 @@ class ProductVersion(models.Model):
     created_at= models.DateTimeField(auto_now_add= True)
 
 class ProductComponent(models.Model):    #Which components are used in THIS version, and how much? ProductComponent describes usage, not identity
-    component= models.ForeignKey(Components, on_delete=models.PROTECT, related_name="product_usages")
+    component= models.ForeignKey('components.Component', on_delete=models.PROTECT, related_name="product_usages")
     quantity_used= models.DecimalField(max_digits=10, decimal_places= 3)
     product_version = models.ForeignKey(ProductVersion, on_delete=models.CASCADE)
 

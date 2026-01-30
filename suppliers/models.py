@@ -1,5 +1,5 @@
 from django.db import models
-from components.models import Component
+#from components.models import Component
 
 # Create your models here.
 class Supplier(models.Model):
@@ -28,7 +28,7 @@ class SupplierComponent(models.Model):
     expected_delivery_period= models.PositiveIntegerField()
     unit_price= models.DecimalField(max_digits=15, decimal_places=3)
     supplier=models.ForeignKey(Supplier, on_delete=models.PROTECT, related_name='supplier_components')   #Show me all supplier–component commercial agreements
-    component= models.ForeignKey(Component, on_delete=models.PROTECT, related_name='supplier_components') #wShow me all supplier–component commercial agreements
+    component= models.ForeignKey('components.Component', on_delete=models.PROTECT, related_name='supplier_components') #wShow me all supplier–component commercial agreements
     #A supplier should have only one active commercial agreement per component
     class Meta:
         constraints = [
