@@ -25,6 +25,8 @@ class ProductVersion(models.Model):
     product= models.ForeignKey(Product, on_delete=models.CASCADE, related_name= 'versions')
     status= models.CharField(max_length=25, choices=VersionStatus.choices, default=VersionStatus.DRAFT)
     created_at= models.DateTimeField(auto_now_add= True)
+    class Meta:
+        unique_together = ('product', 'version_no')
 
 class ProductComponent(models.Model):    #Which components are used in THIS version, and how much? ProductComponent describes usage, not identity
     component= models.ForeignKey('components.Component', on_delete=models.PROTECT, related_name="product_usages")
