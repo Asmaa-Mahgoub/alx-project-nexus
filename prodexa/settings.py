@@ -43,9 +43,17 @@ INSTALLED_APPS = [
     'components',
     'suppliers',
     'orders',
-    'approvals',
+    #'approvals',
     'notifications',
+    'django_filters',
+    'approvals.apps.ApprovalsConfig', # for ready() to run.
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -3,9 +3,11 @@ from .models import Notification
 
 class NotificationSerializer(serializers.ModelSerializer):
     username = serializers.CharField(
-        source='user.username',
+        source='recipient.username',
         read_only=True
     )
     class Meta:
         model= Notification
         fields= '__all__'
+ 
+     

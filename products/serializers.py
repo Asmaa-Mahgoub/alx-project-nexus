@@ -11,7 +11,7 @@ class ProductComponentSerializer(serializers.ModelSerializer):
         model= ProductComponent
         fields= '__all__'
 
-    class ProductVersionSerializer(serializers.ModelSerializer):
+class ProductVersionSerializer(serializers.ModelSerializer):
         product_name= serializers.CharField(source= 'product.name', read_only =True)
         class Meta:
             model= ProductVersion

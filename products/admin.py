@@ -6,7 +6,7 @@ from .models import Product, ProductComponent, ProductVersion
 class ProductAdmin(admin.ModelAdmin):
     list_display=('name','product_code', 'status')
     search_fields=('name','product_code')
-    list_filter=('status')
+    list_filter=('status',)
     ordering = ('name',)
 
 @admin.register(ProductComponent)
@@ -29,7 +29,7 @@ class ProductVersionAdmin(admin.ModelAdmin):
         'product__product_code',
         'version_no'
     )
-    list_filter = ('status', 'product')
+    list_filter = ('status', 'product',)
     ordering = ('-created_at',)
 
 """ 🧠 Golden Rule

@@ -4,9 +4,9 @@ from .models import TrialRequest, Decision
 
 @admin.register(TrialRequest)
 class TrialRequestAdmin(admin.ModelAdmin):
-    list_display=('requested_by', 'request_date', 'version')
-    search_fields=('requested_by__username','version__version_no','justification')
-    ordering=('-request_date')
+    list_display=('requested_by', 'request_date', 'version',)
+    search_fields=('requested_by__username','version__version_no','justification',)
+    ordering=('-request_date',)
 
 """ Why NOT put justification in list_display
 TextField → long, ugly rows
@@ -15,8 +15,8 @@ Breaks table layout
 
 @admin.register(Decision)
 class DecisionAdmin(admin.ModelAdmin):
-    list_display=('decided_by', 'comment', 'decision_date','trial', 'decision')
-    search_fields=('decided_by__username', 'decision','trial__version__version_no')
+    list_display=('decided_by', 'comment', 'decision_date','trial', 'decision',)
+    search_fields=('decided_by__username', 'decision','trial__version__version_no',)
     list_filter = ('decision',)
     ordering=('-decision_date',)
 

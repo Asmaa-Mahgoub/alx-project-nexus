@@ -4,8 +4,8 @@ from .models import UserProfile
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display= ('user', 'department')
-    search_fields=('user__username', 'department')
+    list_display= ('user', 'department',)
+    search_fields=('user__username', 'department',)
 
 
 

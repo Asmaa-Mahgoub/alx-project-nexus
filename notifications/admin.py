@@ -4,7 +4,11 @@ from .models import Notification
 
 @admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):
-    list_display=('user','type','message','is_read','created_at')
-    search_fields=('user__username','message','type') #is_read is boolean → not searchable
-    list_filter = ('type', 'is_read')
+    list_display=('recipient','notification_type','message','is_read','created_at',)
+    search_fields=('recipient__username','message','notification_type',) #is_read is boolean → not searchable
+    list_filter = ('notification_type', 'is_read',)
     ordering=('-created_at',)
+
+
+    
+  

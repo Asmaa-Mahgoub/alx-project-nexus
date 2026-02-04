@@ -16,7 +16,7 @@ class Decision(models.Model):
     class DecisionStatus(models.TextChoices):
         APPROVED= 'APP', 'Approved'
         REJECTED= 'REJ', 'Rejected'
-        PENDING= 'PEND', 'Pending'
+        PENDING= 'PEND', 'Pended'
 
     decided_by= models.ForeignKey(User, on_delete= models.PROTECT, related_name='decisions')
     comment= models.TextField()

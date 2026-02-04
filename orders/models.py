@@ -1,6 +1,7 @@
 from django.db import models
 from suppliers.models import Supplier
 from components.models import Component
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Order(models.Model):
@@ -19,8 +20,6 @@ class Order(models.Model):
     supplier= models.ForeignKey(Supplier, on_delete=models.PROTECT, related_name='supplier_orders')
     expected_delivery_date = models.DateField(null=True, blank=True) 
 
-    def __str__(self):
-        return f"{self.supplier} order status is {self.status}"
     @property
     def total_price(self):
         return sum(
@@ -38,6 +37,7 @@ class OrderItem(models.Model):
     unit_price= models.DecimalField(max_digits=10, decimal_places=3)
     component= models.ForeignKey(Component,on_delete=models.PROTECT, related_name='component_items')
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
+    
     class Meta:
         constraints = [
             models.UniqueConstraint(
@@ -49,3 +49,39 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.component} has a placed order of {self.ordered_quantity} {self.ordered_unit}"
+
+class OrderItemChangeLog(models.Model):
+    class ApprovalStatus(models.TextChoices):
+        PENDING = 'PENDING', 'Pending'
+        APPROVED = 'APPROVED', 'Approved'
+        REJECTED = 'REJECTED', 'Rejected'
+    order_item = models.ForeignKey(
+        OrderItem,
+        on_delete=models.CASCADE,
+        related_name='change_logs'
+    )
+    changed_by = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT
+    )
+    old_quantity = models.DecimalField(max_digits=10, decimal_places=3)
+    new_quantity = models.DecimalField(max_digits=10, decimal_places=3)
+    changed_at = models.DateTimeField(auto_now_add=True)
+    reason = models.CharField(max_length=200, blank=True)
+
+    #What is the state of this CHANGE REQUEST?
+    status = models.CharField(                        
+        max_length=10,
+        choices=ApprovalStatus.choices,
+        default=ApprovalStatus.PENDING
+    )
+    approved_by = models.ForeignKey(               
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        related_name='approved_changes'
+    )
+
+    def __str__(self):
+        return f"{self.order_item} changed by {self.changed_by}"

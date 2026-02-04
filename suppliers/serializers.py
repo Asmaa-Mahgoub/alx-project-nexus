@@ -6,7 +6,7 @@ class SupplierSerializer(serializers.ModelSerializer):
         model= Supplier
         fields= '__all__'
 
-    class SupplierComponentSerializer(serializers.ModelSerializer):
+class SupplierComponentSerializer(serializers.ModelSerializer):
         class Meta:
             model= SupplierComponent
             fields= '__all__'
