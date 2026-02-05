@@ -5,8 +5,9 @@ from django.contrib.auth.models import User,Group
 class UserProfile(models.Model):        #This creates a separate table: user_profile linked to auth_user
     class Department(models.TextChoices):
         RD = 'RD', 'Research & Development'
-        Director = 'DIR', 'Director'
-        SUPPLY = 'SUP', 'Supply Chain'
+        RD_MANAGER = 'RD MANAGER', 'RD_MANAGER'
+        SUPPLY = 'Supply Chain', 'Supply Chain'
+        PURCHASING= 'Purchasing', 'Purchasing'
 
     user = models.OneToOneField(
         User,
