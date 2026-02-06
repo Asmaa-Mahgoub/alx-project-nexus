@@ -16,7 +16,7 @@ class ComponentBatch(models.Model):
         QUARANTINED = 'QTN', 'Quarantined'
     component=models.ForeignKey(Component,on_delete= models.PROTECT, related_name='batches')
     quantity= models.DecimalField(max_digits=10, decimal_places=3)
-    batch_no= models.CharField(unique=True) 
+    batch_no= models.CharField(max_length=50, unique=True) 
     expiry_date= models. DateField()
     received_date= models.DateField() #business reality
     created_at = models.DateTimeField(auto_now_add=True) #system metadata
@@ -36,7 +36,6 @@ class ComponentBatch(models.Model):
         return f"{self.component} | Batch {self.batch_no}"
 
 """  related_name
-
 “How do I want to access CHILDREN from the PARENT?”
 
 UniqueConstraint
