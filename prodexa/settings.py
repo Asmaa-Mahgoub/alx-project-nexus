@@ -27,6 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get(
     'SECRET_KEY',
+    "django-insecure-dev-only-change-this"
     )
 
 
@@ -61,10 +62,13 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_celery_results',
 ]
-CELERY_BROKER_URL = 'redis://redis:6379/0'
+#CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_BACKEND = 'django-db'
+#CELERY_RESULT_BACKEND = 'django-db'
+CELERY_BROKER_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
+CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
