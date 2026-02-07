@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+
+  web:
+    build: .
+    container_name: prodexa_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    env_file:
+      - .env
+
+  redis:
+    image: redis:7
+    container_name: prodexa_redis
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: .
+    container_name: prodexa_celery
+    command: celery -A prodexa worker -l info
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+    env_file:
+      - .env
+
+
+#The Orchestrator, it coordinates multiple "boxes" (services) so they can talk to each other.#
+#volumes: - .:/app: This is "Hot Reloading." If you change code in VS Code, it updates inside the container instantly.

@@ -1,7 +1,19 @@
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
-from .models import Decision
+from .models import Decision, TrialRequest
 from notifications.models import Notification
+
+@receiver(post_save, sender=TrialRequest)
+def notify_decision_maker_on_trial_request(sender, instance, created, **kwargs):
+    if created:
+        Notification.objects.create(
+            recipient=instance.decision_maker,
+            notification_type=Notification.NotificationType.TRIAL_REQUEST,
+            message=(
+                f"A new trial request was submitted for "
+                f"{instance.version} by {instance.requested_by.get_full_name()}."
+            )
+        )
 
 @receiver(pre_save, sender=Decision)
 def cache_old_decision(sender, instance, **kwargs):

@@ -6,6 +6,7 @@ from products.models import ProductVersion
 class TrialRequest(models.Model):
     requested_by= models.ForeignKey(User, on_delete=models.PROTECT, related_name='trial_requests')
     request_date= models.DateTimeField(auto_now_add=True)
+    decision_maker = models.ForeignKey(User, on_delete=models.PROTECT, related_name='assigned_trials', default=None)
     justification= models.TextField()
     version= models.ForeignKey(ProductVersion, on_delete= models.PROTECT, related_name='trial_requests')
     

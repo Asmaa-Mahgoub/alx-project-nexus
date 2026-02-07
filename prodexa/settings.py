@@ -27,14 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get(
     'SECRET_KEY',
-    'django-insecure-obpi4dh+z0i(6ohzlb&9w42clrws7@z$xla3hfk73@#+_t9!0j'
-)
+    )
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =  os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['alx-project-nexus-j3g2.onrender.com']
+ALLOWED_HOSTS = ['alx-project-nexus-j3g2.onrender.com','127.0.0.1']
 
 
 # Application definition
@@ -60,7 +59,12 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_spectacular',
     'corsheaders',
+    'django_celery_results',
 ]
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'django-db'
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
