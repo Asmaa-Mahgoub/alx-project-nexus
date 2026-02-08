@@ -82,7 +82,7 @@ alx-project-nexus/
 ├── Dockerfile                   # Django application image
 ├── requirements.txt             # Python dependencies
 └── README.md
-
+```
 ---
 
 ## 🧭 Development Timeline & Methodology
