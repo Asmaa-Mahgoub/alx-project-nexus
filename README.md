@@ -207,11 +207,11 @@ Ensure having the following installed:
 ```bash
 git clone [https://github.com/Asmaa-Mahgoub/alx-project-nexus](https://github.com/Asmaa-Mahgoub/alx-project-nexus)
 cd alx-project-nexus
-
+```
 ### 3️⃣ Environment Variables
 
 Create a .env file (or set variables in your shell):
-
+```
 DJANGO_SETTINGS_MODULE=prodexa.settings
 DEBUG=True
 
@@ -222,25 +222,33 @@ POSTGRES_HOST=db
 POSTGRES_PORT=5432
 
 CELERY_BROKER_URL=redis://redis:6379/0
+```
 
 ### 4️⃣ Build and Start Containers
+```
 docker compose build
 docker compose up
+```
 
 This will start:
-
+```
 Django API
 PostgreSQL database
 Redis
 Celery worker
+```
 
 ### 5️⃣ Apply Migrations
 
 In a new terminal:
+```
 docker compose exec web python manage.py migrate
+```
 
 ### 6️⃣ Create Superuser (Optional)
+```
 docker compose exec web python manage.py createsuperuser
+```
 
 
 ## 🔒 Authentication & Security
