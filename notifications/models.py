@@ -32,7 +32,7 @@ class Notification(models.Model):
     message = models.TextField()
     is_read = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-     # 🔴 ADDED: Generic reference fields (future-proof, optional)
+     #  ADDED: Generic reference fields (future-proof, optional)
     related_object_id = models.PositiveIntegerField(
         null=True,
         blank=True

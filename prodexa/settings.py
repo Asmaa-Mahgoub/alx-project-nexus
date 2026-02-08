@@ -34,8 +34,8 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =  os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['alx-project-nexus-j3g2.onrender.com','127.0.0.1']
-
+ALLOWED_HOSTS =os.environ.get('alx-project-nexus-j3g2.onrender.com', "127.0.0.1,localhost").split(",")
+#ALLOWED_HOSTS = ['alx-project-nexus-j3g2.onrender.com','localhost','127.0.0.1']
 
 # Application definition
 
@@ -66,7 +66,7 @@ INSTALLED_APPS = [
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 #CELERY_RESULT_BACKEND = 'django-db'
-CELERY_BROKER_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
+CELERY_BROKER_URL = os.environ.get("REDIS_URL", "redis://redis:6379/0")
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 
 
@@ -132,7 +132,7 @@ WSGI_APPLICATION = 'prodexa.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:Asmaa@127.0.0.1:5432/prodexa_db',
+        default=os.environ.get("DATABASE_URL"),
         conn_max_age=600,
         ssl_require=not DEBUG
     )
