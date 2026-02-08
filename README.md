@@ -4,9 +4,9 @@
 
 **ALX Project Nexus** is a production-ready backend system built with **Django** and **Django REST Framework**, designed to manage structured business workflows such as **orders, approvals, trials, and notifications**.
 
-```
+
 This system is a robust internal governance platform designed to regulate critical R&D and Supply Chain operations through automated workflows. It mandates manager approval for all R&D trial requests and strictly controls purchase order increases, while allowing immediate processing for quantity decreases. By integrating a "no-silent-updates" philosophy, the backend ensures every change is logged in a full audit trail before impacting live data. The system utilizes an event-driven architecture to trigger automatic notifications, keeping requesters and managers aligned in real-time. Ultimately, it eliminates unauthorized decision-making by enforcing role-based access control and transparent approval lifecycles for every business-critical change.
-```
+
 
 The system follows **real-world backend engineering practices**, including:
 - Clean domain modeling
