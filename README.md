@@ -27,6 +27,7 @@ The system follows **real-world backend engineering practices**, including:
 ---
 
 ## 🧠 High-Level Architecture
+```
 Client (Postman / Frontend)
         ↓
 Django REST API (DRF)
@@ -42,7 +43,7 @@ Celery Tasks
 Redis (Message Broker)
         ↓
 Asynchronous Notifications
-
+```
 
 Key architectural decisions:
 - **Models first, APIs second**
@@ -192,8 +193,8 @@ send_notification.delay(
     recipient_id=user.id,
     notification_type="ORDER_UPDATE",
     message="Your order was approved"
-) ```
-
+) 
+```
 ---
 ## 💻 Running the Project Locally (Docker)
 
@@ -204,7 +205,7 @@ Ensure having the following installed:
 
 ### 2️⃣ Clone the Repository
 ```bash
-git clone [https://github.com/Asmaa-Mahgoub/alx-project-nexus]
+git clone [https://github.com/Asmaa-Mahgoub/alx-project-nexus](https://github.com/Asmaa-Mahgoub/alx-project-nexus)
 cd alx-project-nexus
 
 ### 3️⃣ Environment Variables
@@ -267,13 +268,13 @@ docker compose exec web python manage.py createsuperuser
 The project features interactive API documentation powered by **drf-spectacular**. You can explore the endpoints, view request/response schemas, and test the API directly from your browser.
 
 ### 🚀 Interactive Documentation
-* **Swagger UI:** [https://alx-project-nexus-j3g2.onrender.com/api/docs/]
+* **Swagger UI:** [https://alx-project-nexus-j3g2.onrender.com/api/docs/](https://alx-project-nexus-j3g2.onrender.com/api/docs/)
 
 ## 🌐 Live Deployment
 
 The project is currently deployed and hosted on **Render**. You can access the live API and the base deployment at the link below:
 
-**Base URL:** (https://alx-project-nexus-j3g2.onrender.com/)
+**Base URL:** [https://alx-project-nexus-j3g2.onrender.com/](https://alx-project-nexus-j3g2.onrender.com/)
 
 ---
 
