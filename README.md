@@ -53,6 +53,7 @@ Key architectural decisions:
 ---
 
 ## 🧩 Project Structure (Simplified)
+```text
 alx-project-nexus/
 │
 ├── prodexa/                     # Django project configuration
@@ -81,7 +82,6 @@ alx-project-nexus/
 ├── Dockerfile                   # Django application image
 ├── requirements.txt             # Python dependencies
 └── README.md
-
 
 ---
 
@@ -192,7 +192,7 @@ send_notification.delay(
     recipient_id=user.id,
     notification_type="ORDER_UPDATE",
     message="Your order was approved"
-)
+) ```
 
 ---
 ## 💻 Running the Project Locally (Docker)
