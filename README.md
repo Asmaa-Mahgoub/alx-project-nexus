@@ -209,7 +209,7 @@ Ensure having the following installed:
 
 ### 2️⃣ Clone the Repository
 ```bash
-git clone [https://github.com/Asmaa-Mahgoub/alx-project-nexus](https://github.com/Asmaa-Mahgoub/alx-project-nexus)
+git clone https://github.com/Asmaa-Mahgoub/alx-project-nexus
 cd alx-project-nexus
 ```
 ### 3️⃣ Environment Variables
